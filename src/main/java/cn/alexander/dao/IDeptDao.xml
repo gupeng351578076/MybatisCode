@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件的根节点
+  namespace
+-->
+<mapper namespace="cn.alexander.dao.IDeptDao">
+
+    <select id="findAll" resultType="Dept">
+        select * from dept
+    </select>
+
+    <insert id="addDept" parameterType="cn.alexander.entity.Dept">
+        INSERT INTO dept(deptname) values (#{deptname})
+    </insert>
+
+    <delete id="deleteDept">
+        DELETE FROM dept where deptno = #{sa}
+    </delete>
+
+    <update id="updateDept" parameterType="Dept">
+        update dept set deptname=#{deptname} where deptno = #{deptno}
+    </update>
+
+    <select id="findAllByMap" resultType="java.util.HashMap">
+        select deptname,deptno from dept
+    </select>
+
+    <select id="findLike" resultType="Dept">
+        select deptno,deptname from dept where deptname like concat('%',#{deptname},'%')
+    </select>
+</mapper>
